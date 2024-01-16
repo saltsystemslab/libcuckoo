@@ -343,6 +343,10 @@ public:
     return static_cast<size_type>(s);
   }
 
+  size_t size_in_bytes() {
+    return buckets_.get_size_in_bytes(); 
+  }
+
   /** Returns the current capacity of the table, that is, @ref bucket_count()
    * &times; @ref slot_per_bucket().
    *

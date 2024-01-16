@@ -85,6 +85,10 @@ public:
     bool occupied(size_type ind) const { return occupied_[ind]; }
     bool &occupied(size_type ind) { return occupied_[ind]; }
 
+    static size_t get_size_in_bytes() {
+      return sizeof(value_type) * SLOT_PER_BUCKET;
+    }
+
   private:
     friend class bucket_container;
 
@@ -250,6 +254,10 @@ public:
   // hashpower and size) will remain valid after deallocation.
   bool is_deallocated() const noexcept {
     return buckets_ == nullptr;
+  }
+
+  size_t get_size_in_bytes() {
+    return size() * bucket::get_size_in_bytes();
   }
 
 private:
